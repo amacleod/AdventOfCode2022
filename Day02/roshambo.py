@@ -33,7 +33,7 @@ def strategy_move(strategy: str) -> str:
 
 
 def strategy_counter(counter: str) -> str:
-    return {'X': 'rock', 'Y': 'paper', 'C': 'scissors'}[counter]
+    return {'X': 'rock', 'Y': 'paper', 'Z': 'scissors'}[counter]
 
 
 def move_score(move: str) -> int:
