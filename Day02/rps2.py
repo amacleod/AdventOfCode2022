@@ -29,7 +29,7 @@ class RPS(object):
             my_move = roshambo.play_for_outcome(opponent_move, outcome)
             score += roshambo.game_score(opponent_move, my_move)
         return score
-    
+
 
 def main():
     rps = RPS([line for line in fileinput.input()])
