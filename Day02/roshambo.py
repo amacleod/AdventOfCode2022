@@ -36,6 +36,10 @@ def strategy_counter(counter: str) -> str:
     return {'X': 'rock', 'Y': 'paper', 'Z': 'scissors'}[counter]
 
 
+def strategy_outcome(strategy: str) -> int:
+    return {'X': -1, 'Y': 0, 'Z': 1}[strategy]
+
+
 def move_score(move: str) -> int:
     return {'rock': 1, 'paper': 2, 'scissors': 3}[move]
 
@@ -52,6 +56,10 @@ def game_outcome(opponent_move: str, player_move: str) -> int:
     :return:  -1 for loss, 0 for draw, 1 for victory
     """
     return by_moves[(player_move, opponent_move)]
+
+
+def game_score(opponent_move: str, player_move: str) -> int:
+    return move_score(player_move) + outcome_score(game_outcome(opponent_move, player_move))
 
 
 def play_for_outcome(opponent_move: str, desired_outcome: int) -> str:

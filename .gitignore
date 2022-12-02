@@ -2,3 +2,4 @@ venv/
 .idea/
 *.iml
 input*.*
+__pycache__/
