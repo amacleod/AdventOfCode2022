@@ -10,10 +10,14 @@ import rucksack
 
 def main():
     sacks = [rucksack.Sack(line) for line in fileinput.input()]
-    total = 0
+    priorities = []
     for sack in sacks:
         for duplicate in sack.duplicates():
-            total += rucksack.item_priority(duplicate)
+            priority = rucksack.item_priority(duplicate)
+            priorities.append(priority)
+    total = 0
+    for priority in priorities:
+        total += priority
     print(total)
 
 

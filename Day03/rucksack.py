@@ -23,9 +23,9 @@ class Sack(object):
         self.left = line[:size]
         self.right = line[size:]
 
-    def duplicates(self):
-        dupes = []
+    def duplicates(self) -> set:
+        dupes = set()
         for item in self.left:
             if item in self.right:
-                dupes.append(item)
+                dupes.add(item)
         return dupes
