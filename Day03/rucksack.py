@@ -4,6 +4,10 @@ Day 3: Elf rucksacks
 
 """
 
+from __future__ import annotations
+import itertools
+
+
 LOWER_A = ord('a')
 UPPER_A = ord('A')
 
@@ -23,9 +27,20 @@ class Sack(object):
         self.left = line[:size]
         self.right = line[size:]
 
+    def __contains__(self, item: str) -> bool:
+        return item in self.left or item in self.right
+
     def duplicates(self) -> set:
         dupes = set()
         for item in self.left:
             if item in self.right:
                 dupes.add(item)
         return dupes
+
+    def matches(self, other_sack: Sack) -> set:
+        sames = set()
+        item_sources = [self.left, self.right]
+        for item in itertools.chain(*item_sources):
+            if item in other_sack:
+                sames.add(item)
+        return sames
