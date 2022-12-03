@@ -13,7 +13,7 @@ def item_priority(item_type: str) -> int:
     priority = index - LOWER_A + 1
     if 0 < priority < 27:
         return priority
-    return index - UPPER_A + 1
+    return index - UPPER_A + 27
 
 
 class Sack(object):
