@@ -28,3 +28,8 @@ class CampSectionRange(object):
 
     def fully_contains(self, other: CampSectionRange) -> bool:
         return self.lower <= other.lower and self.upper >= other.upper
+
+    def overlaps(self, other: CampSectionRange) -> bool:
+        tail_overlap: bool = self.lower <= other.lower <= self.upper
+        head_overlap: bool = self.upper >= other.upper >= self.lower
+        return tail_overlap or head_overlap
