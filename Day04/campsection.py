@@ -8,12 +8,12 @@ from __future__ import annotations
 
 
 def parse_elf_pairs(lines: list[str]) -> list[(CampSectionRange, CampSectionRange)]:
-    elf_pair_ranges = []
-    for line in lines:
-        first, second = line.split(',')
-        pair = (parse_range(first), parse_range(second))
-        elf_pair_ranges.append(pair)
-    return elf_pair_ranges
+    return [parse_pair(line) for line in lines]
+
+
+def parse_pair(pair_def: str) -> (CampSectionRange, CampSectionRange):
+    first, second = pair_def.split(',')
+    return parse_range(first), parse_range(second)
 
 
 def parse_range(range_def: str) -> CampSectionRange:
