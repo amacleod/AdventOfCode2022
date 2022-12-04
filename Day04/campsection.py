@@ -30,6 +30,8 @@ class CampSectionRange(object):
         return self.lower <= other.lower and self.upper >= other.upper
 
     def overlaps(self, other: CampSectionRange) -> bool:
-        tail_overlap: bool = self.lower <= other.lower <= self.upper
-        head_overlap: bool = self.upper >= other.upper >= self.lower
-        return tail_overlap or head_overlap
+        # my tail overlaps if my upper is inside the other OR if I wholly contain the other
+        tail_overlap: bool = other.lower <= self.upper <= other.upper
+        # my head overlaps if my lower is inside the other OR if I wholly contain the other
+        head_overlap: bool = other.lower <= self.lower <= other.upper
+        return tail_overlap or head_overlap or self.fully_contains(other)
