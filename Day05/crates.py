@@ -14,9 +14,23 @@ def columns(line: str, width: int) -> list[str]:
     return pieces
 
 
+def crate_row(line: str) -> list[str]:
+    cols = columns(line, 4)
+    return [parse_crate(col) for col in cols]
+
+
+def parse_crate(crate_def: str) -> str:
+    crate = crate_def.strip()
+    if len(crate) > 1:  # expecting '[X]'
+        return crate[1]
+
+
 def parse_stacks(lines: list[str]) -> list[CrateStack]:
+    rows = []
     for line in lines:
-        pass
+        if '[' not in line:
+            break
+        rows.append(crate_row(line))
 
 
 class CrateStack(object):

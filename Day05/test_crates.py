@@ -14,3 +14,6 @@ class Test(TestCase):
         self.assertEqual('[Z] ', cols[1])
         self.assertEqual('    ', cols[2])
         self.assertEqual('[X]', cols[3])
+
+    def test_crate_row(self):
+        self.assertListEqual([None, 'Z', None, 'X'], crates.crate_row('    [Z]     [X]\n'))
