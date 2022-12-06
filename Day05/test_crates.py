@@ -17,3 +17,10 @@ class Test(TestCase):
 
     def test_crate_row(self):
         self.assertListEqual([None, 'Z', None, 'X'], crates.crate_row('    [Z]     [X]\n'))
+
+    def test_parse_move(self):
+        move = crates.parse_move("move 3 from 2 to 1")
+        # Source and target should be 0-indexed after parsing
+        self.assertEqual(1, move.source)
+        self.assertEqual(0, move.target)
+        self.assertEqual(3, move.quantity)
