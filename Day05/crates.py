@@ -68,6 +68,15 @@ def apply_move(stacks: list[CrateStack], move: MoveInstruction):
         stacks[move.target].add(crate)
 
 
+def apply_move_unified(stacks: list[CrateStack], move: MoveInstruction):
+    """
+    The CrateMover 9001 moves crates all at once, preserving order.
+
+    """
+    crates = stacks[move.source].lift_many(move.quantity)
+    stacks[move.target].add_many(crates)
+
+
 class MoveInstruction(object):
     def __init__(self, source: int, target: int, quantity: int):
         self.source = source
@@ -95,4 +104,13 @@ class CrateStack(object):
 
     def lift(self) -> str:
         return self.crates.pop()
+
+    def lift_many(self, quantity: int) -> list[str]:
+        lifted = self.crates[-quantity:]
+        del(self.crates[-quantity:])
+        return lifted
+
+    def add_many(self, crates: list[str]):
+        for crate in crates:
+            self.add(crate)
 
