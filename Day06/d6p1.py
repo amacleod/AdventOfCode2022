@@ -10,7 +10,7 @@ import signals
 
 def main() -> int:
     detector = signals.PacketDetector(4)
-    signal_input = fileinput.input()[0].strip()
+    signal_input = [line for line in fileinput.input()][0].strip()
     return detector.detect(signal_input)
 
 

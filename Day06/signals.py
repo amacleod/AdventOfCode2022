@@ -17,16 +17,16 @@ class PacketDetector(object):
         width of the marker.
 
         :param input_signal:  full stream of input characters.
-        :return:  1-indexed location of the start of the first packet marker.
+        :return:  quantity of characters consumed before detecting marker.
         """
-        index = 1
+        consumed = 0
         for c in input_signal:
+            consumed += 1
             self.buffer.append(c)
             if len(self.buffer) > self.width:
                 self.buffer.pop(0)
-                index += 1
             if self.qualified(self.buffer):
-                return index
+                return consumed
         raise IndexError(f'No packet marker found in {input_signal}')
 
     def qualified(self, buffer: list[str]) -> bool:
